@@ -5,10 +5,10 @@
 
 ## 關於專案本身的變數
 ## Variables about the project itself
-NAME_PROJECT = "NAME_PROJECT undefined"
-NAME_PROJECT_ABBRIEVIATION = "NAME_PROJECT_ABBRIEVIATION undefined"
-NAME_TARGET = "NAME_TARGET undefined"
-NAME_MODULE = "NAME_MODULE undefined"
+NAME_PROJECT = NAME_PROJECT undefined
+NAME_PROJECT_ABBRIEVIATION = NAME_PROJECT_ABBRIEVIATION undefined
+NAME_TARGET = NAME_TARGET undefined
+NAME_MODULE = NAME_MODULE undefined
 
 ## 目錄取名？
 ## Directory names?

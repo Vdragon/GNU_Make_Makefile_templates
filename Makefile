@@ -108,15 +108,15 @@ COMMAND_UNAME_FETCH_PROCESSER_ARCHITECHTURE = uname -p
 # Reference data
 #   1. http://stackoverflow.com/questions/714100/os-detecting-makefile
 ifeq ($(OS), Windows_NT) # Windows 2000 or later
-	COMMAND_C_COMPILER_ONLY_COMPILE = "Undefined command"
-	COMMAND_CPP_COMPILER_ONLY_COMPILE = "Undefined command"
+	COMMAND_C_COMPILER_ONLY_COMPILE = Undefined command
+	COMMAND_CPP_COMPILER_ONLY_COMPILE = Undefined command
 	
-	COMMAND_LINK_EXECUTABLE = "Undefined command"
+	COMMAND_LINK_EXECUTABLE = Undefined command
 	
-	COMMAND_BUILD_DYNAMIC_LIBRARY = "Undefined command"
-	COMMAND_BUILD_STATIC_LIBRARY = "Undefined command"
+	COMMAND_BUILD_DYNAMIC_LIBRARY = Undefined command
+	COMMAND_BUILD_STATIC_LIBRARY = Undefined command
 	
-	COMMAND_REMOVE_BUILT_ARTIFACTS = "Undefined command"
+	COMMAND_REMOVE_BUILT_ARTIFACTS = Undefined command
 else # Assumed Unix, TODO: We need more
 	UNIX_SYSTEM_NAME := $(shell ${COMMAND_UNAME_FETCH_SYSTEM_NAME})
 	UNIX_PROCESSER_ARCHITECHTURE := $(shell ${COMMAND_UNAME_FETCH_PROCESSER_ARCHITECHTURE})

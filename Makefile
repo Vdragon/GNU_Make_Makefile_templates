@@ -156,7 +156,7 @@ endif
 # 主要內容
 # Main content
 .PHONY : all
-all : compile link
+all : build_executable
 
 .PHONY : build_executable
 build_executable : compile link

@@ -15,6 +15,9 @@ NAME_MODULE = NAME_MODULE undefined
 DIR_SOURCE_CODE = Source_code
 DIR_OBJECT_CODE = Object_code
 DIR_BUILD = Build
+DIR_EXECUTABLES = Executables
+DIR_LIBRARIES = Libaries
+DIR_LIBRARY_HEADERS = Library_headers
 
 ## C/C++ 開發環境相關
 ## C/C++ development environment related

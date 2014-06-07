@@ -174,7 +174,15 @@ archive_library : compile
 .PHONY : link
 link : compile
 	${COMMAND_LINK_EXECUTABLE} *.${POSTFIX_TYPE_OBJECT_CODE}
+
+.PHONY : install
+install : all
 	
+
+.PHONY : uninstall
+uninstall : 
+	
+
 .PHONY : clean
 clean :
 	${COMMAND_REMOVE_BUILT_ARTIFACTS} *.${POSTFIX_TYPE_OBJECT_CODE} *.${POSTFIX_TYPE_EXECUTABLE} *.${POSTFIX_TYPE_DYNAMIC_LIBRARY} *.${POSTFIX_TYPE_STATIC_LIBRARY}

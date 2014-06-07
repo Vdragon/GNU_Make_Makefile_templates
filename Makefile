@@ -5,26 +5,26 @@
 
 ## 關於專案本身的變數
 ## Variables about the project itself
-NAME_PROJECT = NAME_PROJECT undefined
-NAME_PROJECT_ABBRIEVIATION = NAME_PROJECT_ABBRIEVIATION undefined
-NAME_TARGET = NAME_TARGET undefined
-NAME_MODULE = NAME_MODULE undefined
+name_project = name_project undefined
+name_project_abbrieviation = name_project_abbrieviation undefined
+name_target = name_target undefined
+name_module = name_module undefined
 
 ## 目錄取名？
 ## Directory names?
-DIR_SOURCE_CODE = Source_code
-DIR_OBJECT_CODE = Object_code
-DIR_BUILD = Build
-DIR_EXECUTABLES = Executables
-DIR_LIBRARIES = Libaries
-DIR_LIBRARY_HEADERS = Library_headers
+dir_source_code = Source_code
+dir_object_code = Object_code
+dir_build = Build
+dir_executables = Executables
+dir_libraries = Libaries
+dir_library_headers = Library_headers
 
 ## C/C++ 開發環境相關
 ## C/C++ development environment related
-POSTFIX_TYPE_SOURCE_CODE_C = c
-POSTFIX_TYPE_SOURCE_CODE_CPP = cpp
-POSTFIX_TYPE_HEADER_C = h
-POSTFIX_TYPE_HEADER_CPP = hpp
+postfix_type_source_code_c = c
+postfix_type_source_code_cpp = cpp
+postfix_type_header_c = h
+postfix_type_header_cpp = hpp
 POSTFIX_TYPE_OBJECT_CODE_LINUX = o
 POSTFIX_TYPE_OBJECT_CODE_DOS_WINDOWS = obj
 
@@ -36,13 +36,13 @@ OPTION_GCC_ONLY_COMPILE = -c
 OPTION_GCC_OUTPUT_FILENAME = -o
 OPTION_GCC_WARNING_COMMON = -Wall
 OPTION_GCC_DEBUG_INFO_MORE = -g3
-OPTION_GCC_DEBUG_INFO = ${OPTION_GCC_DEBUG_INFO_MORE}
+option_gcc_debug_info = ${OPTION_GCC_DEBUG_INFO_MORE}
 OPTION_GCC_OPTIMIZE_NONE = -O0
 OPTION_GCC_STANDARD_ANSI_C = -ansi
 OPTION_GCC_STANDARD_C99 = -std=c99
-OPTION_GCC_STANDARD = ${OPTION_GCC_STANDARD_ANSI_C}
+option_gcc_standard = ${OPTION_GCC_STANDARD_ANSI_C}
 
-COMMAND_GCC_ONLY_COMPILE = ${COMPILER_GCC} ${OPTION_GCC_ONLY_COMPILE} ${OPTION_GCC_WARNING_COMMON} ${OPTION_GCC_STANDARD_ANSI_C} ${OPTION_GCC_DEBUG_INFO} ${OPTION_GCC_OPTIMIZE_NONE}
+COMMAND_GCC_ONLY_COMPILE = ${COMPILER_GCC} ${OPTION_GCC_ONLY_COMPILE} ${OPTION_GCC_WARNING_COMMON} ${OPTION_GCC_STANDARD_ANSI_C} ${option_gcc_debug_info} ${OPTION_GCC_OPTIMIZE_NONE}
 
 ### C++ 編譯器相關
 ### C++ compiler related
@@ -111,47 +111,47 @@ COMMAND_UNAME_FETCH_PROCESSER_ARCHITECHTURE = uname -p
 # Reference data
 #   1. http://stackoverflow.com/questions/714100/os-detecting-makefile
 ifeq ($(OS), Windows_NT) # Windows 2000 or later
-	COMMAND_C_COMPILER_ONLY_COMPILE = Undefined command
-	COMMAND_CPP_COMPILER_ONLY_COMPILE = Undefined command
+	command_c_compiler_only_compile = Undefined command
+	command_cpp_compiler_only_compile = Undefined command
 	
-	COMMAND_LINK_EXECUTABLE = Undefined command
+	command_link_executable = Undefined command
 	
-	COMMAND_BUILD_DYNAMIC_LIBRARY = Undefined command
-	COMMAND_BUILD_STATIC_LIBRARY = Undefined command
+	command_build_dynamic_library = Undefined command
+	command_build_static_library = Undefined command
 	
-	COMMAND_REMOVE_BUILT_ARTIFACTS = Undefined command
+	command_remove_built_artifacts = Undefined command
 else # Assumed Unix, TODO: We need more
 	UNIX_SYSTEM_NAME := $(shell ${COMMAND_UNAME_FETCH_SYSTEM_NAME})
 	UNIX_PROCESSER_ARCHITECHTURE := $(shell ${COMMAND_UNAME_FETCH_PROCESSER_ARCHITECHTURE})
 	
 # Not used as we currently doesn't assemble our commands here...
-#	COMPILER_C = ${COMPILER_GCC}
-#	COMPILER_CPP = ${COMPILER_GPP}
-	LINKER = ${LINKER_GNU_LINKER}
-	FILE_REMOVER = ${REMOVER_LINUX}
+#	compiler_c = ${COMPILER_GCC}
+#	compiler_cpp = ${COMPILER_GPP}
+	linker = ${LINKER_GNU_LINKER}
+	file_remover = ${REMOVER_LINUX}
 
-	POSTFIX_TYPE_OBJECT_CODE = ${POSTFIX_TYPE_OBJECT_CODE_LINUX}
-	POSTFIX_TYPE_DYNAMIC_LIBRARY = ${POSTFIX_TYPE_DYNAMIC_LIBRARY_LINUX}
-	POSTFIX_TYPE_EXECUTABLE = ${POSTFIX_TYPE_EXECUTABLE_LINUX}
-	POSTFIX_TYPE_STATIC_LIBRARY = ${POSTFIX_TYPE_STATIC_LIBRARY_LINUX}
+	postfix_type_object_code = ${POSTFIX_TYPE_OBJECT_CODE_LINUX}
+	postfix_type_dynamic_library = ${POSTFIX_TYPE_DYNAMIC_LIBRARY_LINUX}
+	postfix_type_executable = ${POSTFIX_TYPE_EXECUTABLE_LINUX}
+	postfix_type_static_library = ${POSTFIX_TYPE_STATIC_LIBRARY_LINUX}
 	
-	COMMAND_C_COMPILER_ONLY_COMPILE = ${COMMAND_GCC_ONLY_COMPILE}
-	COMMAND_CPP_COMPILER_ONLY_COMPILE = ${COMMAND_GPP_ONLY_COMPILE}
+	command_c_compiler_only_compile = ${COMMAND_GCC_ONLY_COMPILE}
+	command_cpp_compiler_only_compile = ${COMMAND_GPP_ONLY_COMPILE}
 	
 # 因為 ${POSTFIX_TYPE_EXECUTABLE} 到這裡才定義所以只能在這裡組合
-	COMMAND_LINK_EXECUTABLE = ${LINKER_GNU_LINKER} ${OPTION_GNU_LINKER_LINK_GLIBC} ${OPTION_GNU_LINKER_OUTPUT} ${NAME_PROJECT}.${POSTFIX_TYPE_EXECUTABLE}
+	command_link_executable = ${LINKER_GNU_LINKER} ${OPTION_GNU_LINKER_LINK_GLIBC} ${OPTION_GNU_LINKER_OUTPUT} ${NAME_PROJECT}.${POSTFIX_TYPE_EXECUTABLE}
 	
-	COMMAND_BUILD_STATIC_LIBRARY = ${ARCHIVER_LIBRARY_GNU_AR} ${OPTION_GNU_AR_OPCODE_INSERT_OBJECT}${OPTION_GNU_AR_MODIFIER_CREATE_FILE}${OPTION_GNU_AR_MODIFIER_ADD_INDEX_INFO} lib${NAME_PROJECT_ABBRIEVIATION}_${NAME_MODULE}.${POSTFIX_TYPE_STATIC_LIBRARY}
+	command_build_static_library = ${ARCHIVER_LIBRARY_GNU_AR} ${OPTION_GNU_AR_OPCODE_INSERT_OBJECT}${OPTION_GNU_AR_MODIFIER_CREATE_FILE}${OPTION_GNU_AR_MODIFIER_ADD_INDEX_INFO} lib${name_project_abbrieviation}_${name_module}.${postfix_type_static_library}
 	
-	COMMAND_REMOVE_BUILT_ARTIFACTS = ${COMMAND_REMOVE_LINUX}
+	command_remove_built_artifacts = ${COMMAND_REMOVE_LINUX}
 endif
 
 # 通用 Make 規則
 # Generic Make rules
-%.${POSTFIX_TYPE_OBJECT_CODE} : %.${POSTFIX_TYPE_SOURCE_CODE_C}
-	${COMMAND_C_COMPILER_ONLY_COMPILE} $^
-%.${POSTFIX_TYPE_OBJECT_CODE} : %.${POSTFIX_TYPE_SOURCE_CODE_CPP}
-	${COMMAND_CPP_COMPILER_ONLY_COMPILE} $^
+%.${postfix_type_object_code} : %.${postfix_type_source_code_c}
+	${command_c_compiler_only_compile} $^
+%.${postfix_type_object_code} : %.${postfix_type_source_code_cpp}
+	${command_cpp_compiler_only_compile} $^
 
 # 主要內容
 # Main content
@@ -165,15 +165,15 @@ build_executable : compile link
 build_library : compile archive_library
 
 .PHONY : compile
-compile : ${NAME_MODULE}.${POSTFIX_TYPE_OBJECT_CODE}
+compile : ${name_module}.${postfix_type_object_code}
 
 .PHONY : archive_library
 archive_library : compile
-	${COMMAND_BUILD_STATIC_LIBRARY} *.${POSTFIX_TYPE_OBJECT_CODE}
+	${command_build_static_library} *.${postfix_type_object_code}
 	
 .PHONY : link
 link : compile
-	${COMMAND_LINK_EXECUTABLE} *.${POSTFIX_TYPE_OBJECT_CODE}
+	${command_link_executable} *.${postfix_type_object_code}
 
 .PHONY : install
 install : all
@@ -185,4 +185,4 @@ uninstall :
 
 .PHONY : clean
 clean :
-	${COMMAND_REMOVE_BUILT_ARTIFACTS} *.${POSTFIX_TYPE_OBJECT_CODE} *.${POSTFIX_TYPE_EXECUTABLE} *.${POSTFIX_TYPE_DYNAMIC_LIBRARY} *.${POSTFIX_TYPE_STATIC_LIBRARY}
+	${command_remove_built_artifacts} *.${postfix_type_object_code} *.${postfix_type_executable} *.${postfix_type_dynamic_library} *.${postfix_type_static_library}

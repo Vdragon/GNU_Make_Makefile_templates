@@ -20,7 +20,7 @@ dir_libraries = Libaries
 dir_library_headers = Library_headers
 
 ## 安裝路徑前綴設定
-DIR_INSTALL_PREFIX_UNIX = /usr/lib/local
+DIR_INSTALL_PREFIX_UNIX = /usr/local
 dir_install_prefix = ${DIR_INSTALL_PREFIX_UNIX}
 
 ## C/C++ 開發環境相關

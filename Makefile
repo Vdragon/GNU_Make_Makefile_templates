@@ -29,7 +29,7 @@ postfix_type_source_code_c = .c
 postfix_type_source_code_cpp = .cpp
 postfix_type_header_c = .h
 postfix_type_header_cpp = .hpp
-POSTFIX_TYPE_OBJECT_CODE_LINUX = .o
+POSTFIX_TYPE_OBJECT_CODE_UNIX = .o
 POSTFIX_TYPE_OBJECT_CODE_DOS_WINDOWS = .obj
 
 ### C 編譯器相關
@@ -65,11 +65,11 @@ COMMAND_GPP_ONLY_COMPILE = ${COMPILER_GPP} ${OPTION_GPP_ONLY_COMPILE} ${option_g
 
 ### 連結器相關
 ### Linker related
-POSTFIX_TYPE_DYNAMIC_LIBRARY_LINUX = .so
+POSTFIX_TYPE_DYNAMIC_LIBRARY_UNIX = .so
 POSTFIX_TYPE_DYNAMIC_LIBRARY_WINDOWS = .dll
 
 POSTFIX_TYPE_EXECUTABLE_WINDOWS = .exe
-POSTFIX_TYPE_EXECUTABLE_LINUX = .executable
+POSTFIX_TYPE_EXECUTABLE_UNIX = .executable
 
 LINKER_GNU_LINKER = ld
 
@@ -78,7 +78,7 @@ OPTION_GNU_LINKER_LINK_GLIBC = -lc
 
 ### 函式庫封裝器相關
 ### Library archiver related
-POSTFIX_TYPE_STATIC_LIBRARY_LINUX = .a
+POSTFIX_TYPE_STATIC_LIBRARY_UNIX = .a
 POSTFIX_TYPE_STATIC_LIBRARY_WINDOWS = .lib
 
 ARCHIVER_LIBRARY_GNU_AR = ar
@@ -93,15 +93,16 @@ OPTION_GNU_AR_MODIFIER_ADD_INDEX_INFO = s
 FILE_REMOVER_WINDOWS = del
 
 ### Unix
-FILE_REMOVER_LINUX = rm
-OPTION_FILE_REMOVER_LINUX_FORCE = --force
-
-COMMAND_REMOVE_LINUX = ${FILE_REMOVER_LINUX} ${OPTION_FILE_REMOVER_LINUX_FORCE}
+FILE_REMOVER_UNIX = rm
+OPTION_FILE_REMOVER_UNIX_FORCE = --force
+OPTION_FILE_REMOVER_UNIX_RECURSIVE = --recursive
+COMMAND_REMOVE_UNIX = ${FILE_REMOVER_UNIX} ${OPTION_FILE_REMOVER_UNIX_FORCE}
+COMMAND_REMOVE_UNIX_RECURSIVE = ${COMMAND_REMOVE_UNIX} ${OPTION_FILE_REMOVER_UNIX_RECURSIVE}
 
 ## 創造新目錄相關
 ## Create directory related
 DIR_CREATER_WINDOWS = mkdir
-DIR_CREATER_LINUX = mkdir
+DIR_CREATER_UNIX = mkdir
 
 OPTION_MKDIR_CREATE_PARENT_AUTOMATICALLY = --parent
 
@@ -135,12 +136,12 @@ else # Assumed Unix, TODO: We need more
 #	compiler_c = ${COMPILER_GCC}
 #	compiler_cpp = ${COMPILER_GPP}
 	linker = ${LINKER_GNU_LINKER}
-	file_remover = ${REMOVER_LINUX}
+	file_remover = ${REMOVER_UNIX}
 
-	postfix_type_object_code = ${POSTFIX_TYPE_OBJECT_CODE_LINUX}
-	postfix_type_dynamic_library = ${POSTFIX_TYPE_DYNAMIC_LIBRARY_LINUX}
-	postfix_type_executable = ${POSTFIX_TYPE_EXECUTABLE_LINUX}
-	postfix_type_static_library = ${POSTFIX_TYPE_STATIC_LIBRARY_LINUX}
+	postfix_type_object_code = ${POSTFIX_TYPE_OBJECT_CODE_UNIX}
+	postfix_type_dynamic_library = ${POSTFIX_TYPE_DYNAMIC_LIBRARY_UNIX}
+	postfix_type_executable = ${POSTFIX_TYPE_EXECUTABLE_UNIX}
+	postfix_type_static_library = ${POSTFIX_TYPE_STATIC_LIBRARY_UNIX}
 	
 	command_c_compiler_only_compile = ${COMMAND_GCC_ONLY_COMPILE}
 	command_cpp_compiler_only_compile = ${COMMAND_GPP_ONLY_COMPILE}
@@ -150,7 +151,7 @@ else # Assumed Unix, TODO: We need more
 	
 	command_build_static_library = ${ARCHIVER_LIBRARY_GNU_AR} ${OPTION_GNU_AR_OPCODE_INSERT_OBJECT}${OPTION_GNU_AR_MODIFIER_CREATE_FILE}${OPTION_GNU_AR_MODIFIER_ADD_INDEX_INFO} lib${name_project_abbrieviation}_${name_module}${postfix_type_static_library}
 	
-	command_remove_built_artifacts = ${COMMAND_REMOVE_LINUX}
+	command_remove_built_artifacts = ${COMMAND_REMOVE_UNIX}
 endif
 
 # 通用 Make 規則

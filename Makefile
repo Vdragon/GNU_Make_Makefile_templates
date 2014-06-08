@@ -19,6 +19,10 @@ dir_executables = Executables
 dir_libraries = Libaries
 dir_library_headers = Library_headers
 
+## 安裝路徑前綴設定
+DIR_INSTALL_PREFIX_UNIX = /usr/lib/local
+dir_install_prefix = ${DIR_INSTALL_PREFIX_UNIX}
+
 ## C/C++ 開發環境相關
 ## C/C++ development environment related
 postfix_type_source_code_c = .c

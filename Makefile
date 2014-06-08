@@ -21,12 +21,12 @@ dir_library_headers = Library_headers
 
 ## C/C++ 開發環境相關
 ## C/C++ development environment related
-postfix_type_source_code_c = c
-postfix_type_source_code_cpp = cpp
-postfix_type_header_c = h
-postfix_type_header_cpp = hpp
-POSTFIX_TYPE_OBJECT_CODE_LINUX = o
-POSTFIX_TYPE_OBJECT_CODE_DOS_WINDOWS = obj
+postfix_type_source_code_c = .c
+postfix_type_source_code_cpp = .cpp
+postfix_type_header_c = .h
+postfix_type_header_cpp = .hpp
+POSTFIX_TYPE_OBJECT_CODE_LINUX = .o
+POSTFIX_TYPE_OBJECT_CODE_DOS_WINDOWS = .obj
 
 ### C 編譯器相關
 ### C compiler related
@@ -56,16 +56,16 @@ option_gpp_warning = ${OPTION_GPP_WARNING_COMMON}
 OPTION_GPP_ONLY_COMPILE = ${OPTION_GCC_ONLY_COMPILE}
 OPTION_GPP_OUTPUT = ${OPTION_GCC_OUTPUT}
 
-COMMAND_GPP_ONLY_COMPILE = ${COMPILER_GPP} ${OPTION_GPP_ONLY_COMPILE} ${OPTION_GPP_WARNING_COMMON}
+COMMAND_GPP_ONLY_COMPILE = ${COMPILER_GPP} ${OPTION_GPP_ONLY_COMPILE} ${option_gpp_warning}
 
 
 ### 連結器相關
 ### Linker related
-POSTFIX_TYPE_DYNAMIC_LIBRARY_LINUX = so
-POSTFIX_TYPE_DYNAMIC_LIBRARY_WINDOWS = dll
+POSTFIX_TYPE_DYNAMIC_LIBRARY_LINUX = .so
+POSTFIX_TYPE_DYNAMIC_LIBRARY_WINDOWS = .dll
 
-POSTFIX_TYPE_EXECUTABLE_WINDOWS = exe
-POSTFIX_TYPE_EXECUTABLE_LINUX = executable
+POSTFIX_TYPE_EXECUTABLE_WINDOWS = .exe
+POSTFIX_TYPE_EXECUTABLE_LINUX = .executable
 
 LINKER_GNU_LINKER = ld
 
@@ -74,8 +74,8 @@ OPTION_GNU_LINKER_LINK_GLIBC = -lc
 
 ### 函式庫封裝器相關
 ### Library archiver related
-POSTFIX_TYPE_STATIC_LIBRARY_LINUX = a
-POSTFIX_TYPE_STATIC_LIBRARY_WINDOWS = lib
+POSTFIX_TYPE_STATIC_LIBRARY_LINUX = .a
+POSTFIX_TYPE_STATIC_LIBRARY_WINDOWS = .lib
 
 ARCHIVER_LIBRARY_GNU_AR = ar
 
@@ -144,16 +144,16 @@ else # Assumed Unix, TODO: We need more
 # 因為 ${POSTFIX_TYPE_EXECUTABLE} 到這裡才定義所以只能在這裡組合
 	command_link_executable = ${LINKER_GNU_LINKER} ${OPTION_GNU_LINKER_LINK_GLIBC} ${OPTION_GNU_LINKER_OUTPUT} ${NAME_PROJECT}.${POSTFIX_TYPE_EXECUTABLE}
 	
-	command_build_static_library = ${ARCHIVER_LIBRARY_GNU_AR} ${OPTION_GNU_AR_OPCODE_INSERT_OBJECT}${OPTION_GNU_AR_MODIFIER_CREATE_FILE}${OPTION_GNU_AR_MODIFIER_ADD_INDEX_INFO} lib${name_project_abbrieviation}_${name_module}.${postfix_type_static_library}
+	command_build_static_library = ${ARCHIVER_LIBRARY_GNU_AR} ${OPTION_GNU_AR_OPCODE_INSERT_OBJECT}${OPTION_GNU_AR_MODIFIER_CREATE_FILE}${OPTION_GNU_AR_MODIFIER_ADD_INDEX_INFO} lib${name_project_abbrieviation}_${name_module}${postfix_type_static_library}
 	
 	command_remove_built_artifacts = ${COMMAND_REMOVE_LINUX}
 endif
 
 # 通用 Make 規則
 # Generic Make rules
-%.${postfix_type_object_code} : %.${postfix_type_source_code_c}
+%${postfix_type_object_code} : %${postfix_type_source_code_c}
 	${command_c_compiler_only_compile} $^
-%.${postfix_type_object_code} : %.${postfix_type_source_code_cpp}
+%${postfix_type_object_code} : %${postfix_type_source_code_cpp}
 	${command_cpp_compiler_only_compile} $^
 
 # 主要內容
@@ -168,15 +168,15 @@ build_executable : compile link
 build_library : compile archive_library
 
 .PHONY : compile
-compile : ${name_module}.${postfix_type_object_code}
+compile : ${name_module}${postfix_type_object_code}
 
 .PHONY : archive_library
 archive_library : compile
-	${command_build_static_library} *.${postfix_type_object_code}
+	${command_build_static_library} *${postfix_type_object_code}
 	
 .PHONY : link
 link : compile
-	${command_link_executable} *.${postfix_type_object_code}
+	${command_link_executable} *${postfix_type_object_code}
 
 .PHONY : install
 install : all
@@ -188,4 +188,4 @@ uninstall :
 
 .PHONY : clean
 clean :
-	${command_remove_built_artifacts} *.${postfix_type_object_code} *.${postfix_type_executable} *.${postfix_type_dynamic_library} *.${postfix_type_static_library}
+	${command_remove_built_artifacts} *${postfix_type_object_code} *${postfix_type_executable} *${postfix_type_dynamic_library} *${postfix_type_static_library}

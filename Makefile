@@ -106,6 +106,13 @@ DIR_CREATER_UNIX = mkdir
 
 OPTION_MKDIR_CREATE_PARENT_AUTOMATICALLY = --parent
 
+## 安裝檔案相關
+## Install files related
+FILE_INSTALLER_UNIX = install
+OPTION_FILE_INSTALLER_UNIX_AUTOMATIC_CREATE_PARENT_DIRECTORY = --directory
+
+COMMAND_INSTALL_UNIX = ${FILE_INSTALLER_UNIX} ${OPTION_FILE_INSTALLER_UNIX_AUTOMATIC_CREATE_PARENT_DIRECTORY}
+
 ## System environment details related
 ### Unix
 # -s is used instead of --sysname for portability

@@ -1,8 +1,6 @@
+# Makefile 範本（適用於軟體根目錄）
 # The format of this file is based on GNU_Make_Makefile_templates
 # https://github.com/Vdragon/GNU_Make_Makefile_templates
-# 變數
-# Variables
-
 ## 關於專案本身的變數
 ## Variables about the project itself
 name_project = name_project undefined
@@ -22,70 +20,6 @@ dir_library_headers = Library_headers
 ## 安裝路徑前綴設定
 DIR_INSTALL_PREFIX_UNIX = /usr/local
 dir_install_prefix = ${DIR_INSTALL_PREFIX_UNIX}
-
-## C/C++ 開發環境相關
-## C/C++ development environment related
-postfix_type_source_code_c = .c
-postfix_type_source_code_cpp = .cpp
-postfix_type_header_c = .h
-postfix_type_header_cpp = .hpp
-POSTFIX_TYPE_OBJECT_CODE_UNIX = .o
-POSTFIX_TYPE_OBJECT_CODE_DOS_WINDOWS = .obj
-
-### C 編譯器相關
-### C compiler related
-COMPILER_GCC = gcc
-OPTION_GCC_WITH_DEBUGGING_SYMBOLS = -g
-OPTION_GCC_ONLY_COMPILE = -c
-OPTION_GCC_OUTPUT_FILENAME = -o
-OPTION_GCC_WARNING_COMMON = -Wall
-option_gcc_warning = ${OPTION_GCC_WARNING_COMMON}
-OPTION_GCC_DEBUG_INFO_MORE = -g3
-option_gcc_debug_info = ${OPTION_GCC_DEBUG_INFO_MORE}
-OPTION_GCC_OPTIMIZE_NONE = -O0
-option_gcc_optimize = ${OPTION_GCC_OPTIMIZE_NONE}
-OPTION_GCC_STANDARD_ANSI_C = -ansi
-OPTION_GCC_STANDARD_C99 = -std=c99
-option_gcc_standard = ${OPTION_GCC_STANDARD_ANSI_C}
-
-COMMAND_GCC_ONLY_COMPILE = ${COMPILER_GCC} ${OPTION_GCC_ONLY_COMPILE} ${option_gcc_warning} ${option_gcc_standard} ${option_gcc_debug_info} ${option_gcc_optimize}
-
-### C++ 編譯器相關
-### C++ compiler related
-COMPILER_GPP = g++
-
-OPTION_GPP_WITH_DEBUGGING_SYMBOLS = ${OPTION_GCC_WITH_DEBUGGING_SYMBOLS}
-OPTION_GPP_WARNING_COMMON = ${OPTION_GCC_WARNING_COMMON}
-option_gpp_warning = ${OPTION_GPP_WARNING_COMMON}
-OPTION_GPP_ONLY_COMPILE = ${OPTION_GCC_ONLY_COMPILE}
-OPTION_GPP_OUTPUT = ${OPTION_GCC_OUTPUT}
-
-COMMAND_GPP_ONLY_COMPILE = ${COMPILER_GPP} ${OPTION_GPP_ONLY_COMPILE} ${option_gpp_warning}
-
-
-### 連結器相關
-### Linker related
-POSTFIX_TYPE_DYNAMIC_LIBRARY_UNIX = .so
-POSTFIX_TYPE_DYNAMIC_LIBRARY_WINDOWS = .dll
-
-POSTFIX_TYPE_EXECUTABLE_WINDOWS = .exe
-POSTFIX_TYPE_EXECUTABLE_UNIX = .executable
-
-LINKER_GNU_LINKER = ld
-
-OPTION_GNU_LINKER_OUTPUT_FILENAME = -o
-OPTION_GNU_LINKER_LINK_GLIBC = -lc
-
-### 函式庫封裝器相關
-### Library archiver related
-POSTFIX_TYPE_STATIC_LIBRARY_UNIX = .a
-POSTFIX_TYPE_STATIC_LIBRARY_WINDOWS = .lib
-
-ARCHIVER_LIBRARY_GNU_AR = ar
-
-OPTION_GNU_AR_OPCODE_INSERT_OBJECT = r
-OPTION_GNU_AR_MODIFIER_CREATE_FILE = c
-OPTION_GNU_AR_MODIFIER_ADD_INDEX_INFO = s
 
 ## 刪除檔案相關
 ## Delete file related
@@ -163,10 +97,6 @@ endif
 
 # 通用 Make 規則
 # Generic Make rules
-%${postfix_type_object_code} : %${postfix_type_source_code_c}
-	${command_c_compiler_only_compile} $^
-%${postfix_type_object_code} : %${postfix_type_source_code_cpp}
-	${command_cpp_compiler_only_compile} $^
 
 # 主要內容
 # Main content
@@ -174,25 +104,8 @@ endif
 all : build
 
 .PHONY : build
-build : build_executable
-
-# .PHONY : build_executable
-# build_executable : compile link
-# 
-# .PHONY : build_library
-# build_library : compile archive_library
-# 
-# .PHONY : compile
-# compile : ${name_module}${postfix_type_object_code}
-# 
-# .PHONY : archive_library
-# archive_library : compile
-# 	${command_build_static_library} *${postfix_type_object_code}
-# 	
-# .PHONY : link
-# link : compile
-# 	${command_link_executable} *${postfix_type_object_code}
-# 
+build : 
+	
 # .PHONY : install
 # install : all
 # 	
@@ -200,7 +113,6 @@ build : build_executable
 # .PHONY : uninstall
 # uninstall : 
 # 	
-# 
 # .PHONY : clean
 # clean :
 # 	${command_remove_built_artifacts} *${postfix_type_object_code} *${postfix_type_executable} *${postfix_type_dynamic_library} *${postfix_type_static_library}

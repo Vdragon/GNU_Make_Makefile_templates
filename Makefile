@@ -171,33 +171,36 @@ endif
 # 主要內容
 # Main content
 .PHONY : all
-all : build_executable
+all : build
 
-.PHONY : build_executable
-build_executable : compile link
+.PHONY : build
+build : build_executable
 
-.PHONY : build_library
-build_library : compile archive_library
-
-.PHONY : compile
-compile : ${name_module}${postfix_type_object_code}
-
-.PHONY : archive_library
-archive_library : compile
-	${command_build_static_library} *${postfix_type_object_code}
-	
-.PHONY : link
-link : compile
-	${command_link_executable} *${postfix_type_object_code}
-
-.PHONY : install
-install : all
-	
-
-.PHONY : uninstall
-uninstall : 
-	
-
-.PHONY : clean
-clean :
-	${command_remove_built_artifacts} *${postfix_type_object_code} *${postfix_type_executable} *${postfix_type_dynamic_library} *${postfix_type_static_library}
+# .PHONY : build_executable
+# build_executable : compile link
+# 
+# .PHONY : build_library
+# build_library : compile archive_library
+# 
+# .PHONY : compile
+# compile : ${name_module}${postfix_type_object_code}
+# 
+# .PHONY : archive_library
+# archive_library : compile
+# 	${command_build_static_library} *${postfix_type_object_code}
+# 	
+# .PHONY : link
+# link : compile
+# 	${command_link_executable} *${postfix_type_object_code}
+# 
+# .PHONY : install
+# install : all
+# 	
+# 
+# .PHONY : uninstall
+# uninstall : 
+# 	
+# 
+# .PHONY : clean
+# clean :
+# 	${command_remove_built_artifacts} *${postfix_type_object_code} *${postfix_type_executable} *${postfix_type_dynamic_library} *${postfix_type_static_library}
